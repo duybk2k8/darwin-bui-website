@@ -1,62 +1,153 @@
-/*HOME PAGE*/
+/* ============================ HOME PAGE ============================ */
 .title {
+  position: relative;
+  isolation: isolate; /*tạo "lớp" riêng để ::before nằm dưới chữ*/
+  overflow: hidden;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 0.5rem;
   text-align: center;
 
-  min-height: calc(100vh - 4.7rem); /*trừ chiều cao nav-bar*/
-  width: 100%;
-  padding: 0.9375rem;
+  min-height: calc(100vh - var(--header-h)); /*trừ chiều cao nav-bar*/
+  min-height: calc(100dvh - var(--header-h));
+  padding: 2rem clamp(1rem, 5vw, 3rem);
 
-  background-image: url("https://i.postimg.cc/02Yv2Xfd/Thiet-ke-chua-co-ten-(11).png");
+  /*2 lớp nền: lớp trên là màu phủ (trong suốt ở light, tối ở dark), lớp dưới là ảnh*/
+  --overlay: light-dark(rgb(242 245 252 / 0.15), rgb(8 14 28 / 0.82));
+  background-image:
+    linear-gradient(var(--overlay), var(--overlay)),
+    url("https://i.postimg.cc/02Yv2Xfd/Thiet-ke-chua-co-ten-(11).png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
-  color: #154b95;
-  margin-left: auto;
-  margin-right: auto;
-  box-shadow: 0 5px 8px rgb(198, 198, 198);
+  color: var(--heading);
+}
+
+/*2 "đốm sáng" mờ trôi chậm phía sau -> nền có chiều sâu, chỉ bằng CSS*/
+.title::before,
+.title::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 32rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: float 14s ease-in-out infinite alternate;
+}
+
+.title::before {
+  background: var(--chip);
+  top: -10rem;
+  left: -8rem;
+  opacity: 0.45;
+}
+
+.title::after {
+  background: #FED34C;
+  bottom: -12rem;
+  right: -10rem;
+  opacity: 0.25;
+  animation-delay: -7s;
+}
+
+@keyframes float {
+  to {
+    translate: 6rem 4rem;
+  }
+}
+
+/*giới hạn độ rộng để chữ không bị dàn quá dài trên màn to*/
+.title > * {
+  max-width: 46rem;
 }
 
 .title h1 {
-  font-size: 1.5rem;
+  /*luôn 1 dòng: không cho xuống dòng + chữ co theo độ rộng màn hình (vw)
+    để trên điện thoại vẫn vừa*/
+  max-width: none;
+  white-space: nowrap;
+  font-size: clamp(1.1rem, 5.2vw, 3.4rem);
+  margin: 0;
+  /*chữ gradient*/
+  background: linear-gradient(90deg, var(--heading), var(--accent), var(--heading));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 6s linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
 }
 
 .title h2 {
-  font-size: 1.2rem;
+  text-wrap: balance; /*chia chữ đều các dòng, không để 1 chữ lẻ loi*/
+  font-size: clamp(1rem, 2.6vw, 1.3rem);
+  font-weight: 500;
+  margin: 0.5rem 0 1rem;
+  color: var(--text);
 }
 
-.title p {
-  font-size: 0.8rem;
+/*Các con của .title hiện lần lượt*/
+.title > * {
+  animation: fadeUp 0.8s var(--ease) both;
+}
+.title > :nth-child(2) { animation-delay: 0.12s; }
+.title > :nth-child(3) { animation-delay: 0.24s; }
+.title > :nth-child(4) { animation-delay: 0.36s; }
+
+/*h1 có 2 animation: hiện ra + chữ chạy màu*/
+.title h1 {
+  animation: fadeUp 0.8s var(--ease) both, shine 6s linear infinite;
 }
 
-/*UW BUTTON*/
+/* ============================ UW BUTTON ============================ */
 .uw-logo {
-  color: black;
+  color: #111;
   text-decoration: none;
-  font-size: 0.75rem;
-  padding: 0.4rem 0.6rem;
-  background-color: #fed34c;
+  font-size: 0.85em;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  background-color: #FED34C;
 
-  border-radius: 0.75rem;
-  border: solid 2px black;
+  border-radius: var(--radius);
+  border: 2px solid #111;
+  box-shadow: 3px 3px 0 #111;
 
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.3rem;
-  margin-left: 0.3125rem;
-  vertical-align: text-bottom;
+  margin: 0.25rem 0 0 0.3rem;
+  vertical-align: middle;
+  transition: translate 0.2s var(--ease), box-shadow 0.2s var(--ease);
 }
 
 .uw-logo:hover {
-  transition: transform 0.3s linear;
-  transform: scale(1.05);
+  translate: -2px -2px;
+  box-shadow: 5px 5px 0 #111;
 }
 
-.intro_caption{
+.uw-logo:active {
+  translate: 2px 2px;
+  box-shadow: 0 0 0 #111;
+}
+
+.intro_caption {
+  text-wrap: balance; /*"experiences." không còn đứng 1 mình ở dòng dưới*/
   font-family: "IBM Plex Mono", monospace;
+  font-size: clamp(0.85rem, 2vw, 0.98rem);
+  color: var(--text);
+  margin: 0;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }

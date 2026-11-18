@@ -1,113 +1,155 @@
-/*  ACHIEVEMENTS & SCHOLARSHIPS  */
-#personalexp{
-    padding: 0 2rem 2rem;
+/* ====================== ACHIEVEMENTS & SCHOLARSHIPS ====================== */
+#personalexp {
+  width: min(960px, 92%);
+  margin: 0 auto;
 }
 
 .paragraph {
-  width: 40%;
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: clamp(1.25rem, 3vw, 2rem);
   font-size: 1rem;
-  padding: 2rem;
-  background-color: #f6fcff;
-  color: #154b95;
-  box-sizing: border-box;
-  border-radius: 12px;
-  line-height: 1.8; /*khoảng cách giữa các dòng*/
-  box-shadow: 0 4px 8px rgb(198, 198, 198);
+  line-height: 1.8;
+  text-align: left;
+  color: var(--text);
+  background-color: var(--surface);
+  border: 2px dashed var(--heading);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
 
-  margin-left: auto;
-  margin-right: auto;
-  text-align: justify;
-  border: 2px dashed #154B95;
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* ---------- BẢNG ĐIỂM ---------- */
+/*Trên mobile bảng có thể rộng hơn màn hình -> cho phép cuộn ngang trong khung*/
+.achievements li:has(table) {
+  overflow-x: auto;
 }
 
 table {
-  width: 90%;
-  margin: 1.25rem auto;
-  table-layout: fixed; /*k qtam nội dung mà dựa vào width để chia bảng*/
+  width: 100%;
+  margin: 1rem 0 0.25rem;
+  /*separate + spacing 0 thì mới bo góc được bảng (collapse thì không)*/
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  overflow: hidden;
 }
-th, td{
+
+th,
+td {
   text-align: center;
-  border: 1px black solid;
-  padding: 0.45rem;
+  padding: 0.6rem;
 }
 
-td{
-  background-color: #D4EEED;
+th {
+  color: light-dark(#111, var(--text));
+  background-color: var(--chip);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.9rem;
 }
 
-tr[class="table-head"] > th{
-  background-color: #8CC4DF;
+td {
+  background-color: var(--surface-2);
+  border-top: 1px solid color-mix(in srgb, var(--ink) 40%, transparent);
+  transition: background-color 0.2s;
 }
 
-tr[class="table-head"] > th:first-child{
-  border-top-left-radius: 0.5625rem;
+/*hover vào 1 hàng -> cả hàng sáng lên*/
+tbody tr:hover td {
+  background-color: var(--highlight);
+  color: var(--highlight-text);
 }
 
-tr[class="table-head"] > th:last-child{
-  border-top-right-radius: 0.5625rem;
+/* ---------- DANH SÁCH THÀNH TÍCH ---------- */
+.achievements {
+  display: grid;
+  gap: 0.6rem;
 }
 
-tr[class="table-bottom"] > td:first-child{
-  border-bottom-left-radius: 0.5625rem;
-}
-
-tr[class="table-bottom"] > td:last-child{
-  border-bottom-right-radius: 0.5625rem;
-}
-
-.achievements li{
-  margin-top: 0.3125rem;
-  margin-bottom: 0.3125rem;
+.achievements li {
+  position: relative;
+  padding: 0.9rem 1rem 0.9rem 2.75rem;
   font-size: 1rem;
-  background-color: #F2F5FC;
+  background-color: var(--surface);
+  border: 1px solid color-mix(in srgb, var(--border) 45%, transparent);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: translate 0.25s var(--ease), border-color 0.25s;
+}
+
+/*dấu ✦ ở đầu mỗi dòng thay cho gạch đầu dòng*/
+.achievements li::before {
+  content: "✦";
+  position: absolute;
+  left: 1rem;
+  top: 0.9rem;
+  color: var(--accent);
+  transition: rotate 0.4s var(--ease);
+}
+
+.achievements li:hover {
+  translate: 6px 0;
+  border-color: var(--border);
+}
+
+.achievements li:hover::before {
+  rotate: 90deg;
+}
+
+/* ---------- HỌC BỔNG ---------- */
+.scholarship {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
   padding: 1rem;
-  border-radius: 12px;
-  border: 1.5px solid black;
-  opacity: 0.9;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  background-color: var(--surface-2);
+  border-left: 4px solid var(--heading);
+  border-radius: var(--radius);
 }
 
-.achievements li:hover{
-    transform: scale(1.02);
-    transition: 0.3s linear;
-}
-
-ul{
-    list-style: none;
-    padding-left: 0;
-}
-
-.item{
+.item {
   display: flex; /*dùng để tạo 1 hàng / cột linh hoạt cho phần tử con => căn*/
   justify-content: space-between;
   align-items: baseline; /*căn phần tử theo đường baseline của văn bản*/
   gap: 1.5rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.item:hover {
+  background-color: var(--surface);
+}
+
+.item p {
+  margin: 0;
+  font-size: 1rem;
 }
 
 .award {
   flex: 1; /*lấy toàn khoảng trống còn lại, tên trường nằm sát phải*/
 }
 
-.school{
+.school {
   flex-shrink: 0; /*k cho co nhỏ khi k đủ chỗ*/
   text-align: right;
-  color: #6c757d;
+  color: var(--muted);
   font-style: italic;
 }
 
-.item p {
-  margin: 0.3125rem 0;
-  font-size: 1rem;
+/*mobile: tên trường xuống dòng dưới học bổng*/
+@media (max-width: 600px) {
+  .item {
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .school {
+    text-align: left;
+  }
 }
-
-ul[class="scholarship"]{
-  margin-bottom: 2.1875rem;
-  padding: 1.4rem 1.2rem 1.4rem 1.2rem;
-  border-left: 4px #154B95 solid;
-  border-right: 4px #154B95 solid;
-  background-color: #D4EEED ;
-}
-
-
-

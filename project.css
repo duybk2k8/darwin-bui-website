@@ -1,120 +1,137 @@
+/* ============================ PROJECTS ============================ */
+.project-grid {
+  display: grid;
+  /*auto-fill + minmax: tự tính số cột theo độ rộng màn hình
+    min(100%, 20rem) để màn nhỏ hơn 20rem không bị tràn*/
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+  gap: 2.25rem;
+  width: min(1380px, 92%);
+  margin: 0 auto;
+}
+
 /*TỪNG MỤC PROJECT*/
 .project {
   display: flex;
   flex-direction: column;
-  max-width: 30rem;
-  border-radius: 12px;
-  background-color: white;
-  text-align: center;
-  border: solid 2px #53a4cf;
-  margin-bottom: 30px;
-  box-shadow: 0 5px 8px rgb(198, 198, 198);
-  background-color: #d4eeed;
-  padding: 1rem;
+  gap: 1rem;
+  padding: 1.6rem;
+  font-size: 1.05rem;
+
+  background-color: var(--surface);
+  border: 2px solid var(--ink);
+  border-radius: 1rem;
+  box-shadow: 5px 5px 0 var(--chip);
+  transition: translate 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 
+/*hover: thẻ "nhấc" lên, bóng dài ra*/
 .project:hover {
-  transform: scale(1.05);
-  transition: 0.3s linear;
-}
-
-.project-grid {
-  margin-left: 1rem;
-  margin-right: 1rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
-  gap: 2rem;
+  translate: -4px -4px;
+  box-shadow: 9px 9px 0 var(--chip);
 }
 
 .project-heading {
   display: flex;
-  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-#star {
-  width: 2rem;
-  height: 2rem;
-  position: relative;
-  margin-right: 0.5rem;
+.star {
+  width: 1.75rem;
+  height: 1.75rem;
+  transition: rotate 0.6s var(--ease);
+}
+
+.project:hover .star {
+  rotate: 72deg; /*ngôi sao 5 cánh xoay 72° trông như đứng yên nhưng "nhún" 1 cái*/
 }
 
 .project-category {
-  font-weight: bold;
-  color: #2d74a8;
-  position: relative;
-  top: -0.5rem;
-}
-
-.project-name {
-  color: #154b95;
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent);
 }
 
 .project h3 {
   margin: 0;
-  text-shadow: 0 4px 8px rgb(198, 198, 198);
+  text-align: left;
+  font-size: 1.35rem;
+  color: var(--heading);
 }
 
 .project > p {
-  background-color: #fbf2ad;
+  margin: 0;
+  flex: 1; /*đoạn mô tả giãn ra -> nút View Code luôn ở đáy, các thẻ đều nhau*/
   padding: 1rem;
-  border: 2px solid black;
-  border-radius: 0.75rem;
-  text-align: justify;
-}
-
-.tag div {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-
-  padding: 0.4rem 1rem;
-
-  font-size: 0.7rem;
-  font-weight: 600;
-
-  background-color: #8cc4df;
-  border: 2px solid black;
-  border-radius: 0.75rem;
-}
-
-.tag div:hover {
-  transform: scale(1.05);
-  transition: 0.3s linear;
+  line-height: 1.6;
+  color: light-dark(#2A2A2A, var(--text));
+  background-color: light-dark(#FBF2AD, var(--surface-2)); /*dark: vàng nhìn bị "đục" -> dùng xanh đậm*/
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
 }
 
 .tag {
   display: flex;
-  justify-content: center;
-  gap: 1rem;
-  padding: 1rem;
-  margin-top: -1rem;
+  justify-content: center; /*tag nằm giữa thẻ*/
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag div {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: light-dark(#111, var(--text));
+  background-color: var(--chip);
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  transition: translate 0.2s var(--ease);
+}
+
+.tag div:hover {
+  translate: 0 -2px;
 }
 
 .git-nav {
-  background-color: #154b95;
-  text-decoration: none;
-  color: #d4eeed;
-  padding: 0.75rem;
-  width: 40%;
-
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  gap: 0.5rem;
+  align-self: center; /*nút View Code nằm giữa*/
+  padding: 0.75rem 1.5rem;
 
-  border: 2px black solid;
-  border-radius: 12px;
-  margin: auto auto 0 auto;
+  color: #F2F5FC;
+  font-weight: 600;
+  text-decoration: none;
+  background-color: var(--accent-strong);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  transition: background-color 0.2s, gap 0.3s var(--ease);
+}
+
+/*mũi tên chạy sang phải khi hover*/
+.git-nav::after {
+  content: "→";
+  transition: translate 0.3s var(--ease);
+}
+
+.git-nav:hover::after {
+  translate: 4px 0;
+}
+
+.git-nav:hover {
+  background-color: var(--heading);
+  color: var(--bg);
 }
 
 .git-nav::before {
   content: "";
-  display: inline-block;
-  width: 1.8rem;
-  height: 1.8rem;
-
+  width: 1.4rem;
+  height: 1.4rem;
   background-image: url("https://i.postimg.cc/y60hvfS1/git.png");
   background-size: contain; /*Phóng to thu nhỏ để all ảnh nằm gọn trong khung k bị cắt*/
   background-repeat: no-repeat;
   background-position: center;
-  margin-right: 0.2rem;
 }
