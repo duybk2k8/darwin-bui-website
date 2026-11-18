@@ -37,7 +37,7 @@
   --shadow-lg: 0 14px 32px var(--shadow-color);
   --radius: 0.75rem;
   --ease: cubic-bezier(0.22, 1, 0.36, 1); /*"easeOutQuint": chậm dần rất mượt*/
-  --header-h: 4.5rem;
+  --header-h: 4rem;
 }
 
 
@@ -223,7 +223,7 @@ main > *:nth-child(3) { animation-delay: 0.16s; }
 .brand {
   font-family: "IBM Plex Mono", monospace;
   font-weight: 700;
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   color: var(--heading);
   text-decoration: none;
   justify-self: start; /*nằm sát trái trong cột của nó*/
@@ -249,10 +249,10 @@ main > *:nth-child(3) { animation-delay: 0.16s; }
 .content-section {
   position: relative;
   color: var(--text);
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 500;
   text-decoration: none;
-  padding: 0.6rem 1.1rem;
+  padding: 0.45rem 0.9rem;
   border-radius: var(--radius);
   transition: color 0.25s ease, background-color 0.25s ease, translate 0.25s var(--ease);
 }
@@ -261,9 +261,9 @@ main > *:nth-child(3) { animation-delay: 0.16s; }
 .content-section::after {
   content: "";
   position: absolute;
-  left: 1.1rem;
-  right: 1.1rem;
-  bottom: 0.35rem;
+  left: 0.9rem;
+  right: 0.9rem;
+  bottom: 0.3rem;
   height: 2px;
   border-radius: 2px;
   background: var(--accent);
@@ -347,8 +347,8 @@ main > *:nth-child(3) { animation-delay: 0.16s; }
 /*màn vừa (laptop nhỏ): nút nav nhỏ lại 1 chút cho vừa*/
 @media (max-width: 1150px) {
   .content-section {
-    font-size: 0.95rem;
-    padding: 0.5rem 0.7rem;
+    font-size: 0.88rem;
+    padding: 0.4rem 0.6rem;
   }
 }
 
@@ -415,8 +415,8 @@ main > *:nth-child(3) { animation-delay: 0.16s; }
   display: grid;
   place-items: center;
   justify-self: end; /*nằm sát phải trong cột của nó*/
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 2.4rem;
+  height: 2.4rem;
   flex-shrink: 0;
 
   color: var(--heading);
@@ -448,8 +448,8 @@ main > *:nth-child(3) { animation-delay: 0.16s; }
 
 /*SVG: tô màu bằng CSS. currentColor = lấy màu chữ (color) của phần tử*/
 .dark-mode svg {
-  width: 1.35rem;
-  height: 1.35rem;
+  width: 1.15rem;
+  height: 1.15rem;
 }
 
 .icon-moon svg {
@@ -503,7 +503,7 @@ main > *:nth-child(3) { animation-delay: 0.16s; }
 /* ====================== 7. TIÊU ĐỀ, LABEL, FOOTER ====================== */
 .title_1 {
   font-family: "IBM Plex Mono", monospace;
-  font-size: clamp(1.05rem, 2.5vw, 1.4rem); /*clamp(min, ưu tiên, max): tự co theo màn hình*/
+  font-size: clamp(1rem, 2.2vw, 1.25rem); /*clamp(min, ưu tiên, max): tự co theo màn hình*/
   letter-spacing: 0.04em;
   width: fit-content;
   max-width: 92%;

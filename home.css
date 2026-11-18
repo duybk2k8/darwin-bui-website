@@ -63,7 +63,7 @@
 
 /*giới hạn độ rộng để chữ không bị dàn quá dài trên màn to*/
 .title > * {
-  max-width: 46rem;
+  max-width: 42rem;
 }
 
 .title h1 {
@@ -71,7 +71,7 @@
     để trên điện thoại vẫn vừa*/
   max-width: none;
   white-space: nowrap;
-  font-size: clamp(1.1rem, 5.2vw, 3.4rem);
+  font-size: clamp(1.1rem, 4.6vw, 2.6rem);
   margin: 0;
   /*chữ gradient*/
   background: linear-gradient(90deg, var(--heading), var(--accent), var(--heading));
@@ -90,7 +90,7 @@
 
 .title h2 {
   text-wrap: balance; /*chia chữ đều các dòng, không để 1 chữ lẻ loi*/
-  font-size: clamp(1rem, 2.6vw, 1.3rem);
+  font-size: clamp(0.95rem, 2.4vw, 1.1rem);
   font-weight: 500;
   margin: 0.5rem 0 1rem;
   color: var(--text);
@@ -142,7 +142,7 @@
 .intro_caption {
   text-wrap: balance; /*"experiences." không còn đứng 1 mình ở dòng dưới*/
   font-family: "IBM Plex Mono", monospace;
-  font-size: clamp(0.85rem, 2vw, 0.98rem);
+  font-size: clamp(0.82rem, 1.8vw, 0.9rem);
   color: var(--text);
   margin: 0;
   padding: 0.75rem 1.25rem;
