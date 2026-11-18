@@ -62,7 +62,7 @@
 
 .read-more {
   margin-top: auto; /*nút luôn nằm ở đáy thẻ*/
-  align-self: flex-start;
+  align-self: center; /*nút Read More nằm giữa thẻ*/
   display: inline-flex;
   gap: 0.4rem;
   padding: 0.65rem 1.25rem;
